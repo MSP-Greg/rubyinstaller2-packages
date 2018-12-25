@@ -1,10 +1,10 @@
 _realname=ruby
-pkgbase=mingw-w64-ruby-head
-pkgname="${MINGW_PACKAGE_PREFIX}-ruby-head"
-pkgver=r20180516
-pkgver() {
-  echo r`date +%Y%m%d`
-}
+pkgbase=mingw-w64-ruby26
+pkgname="${MINGW_PACKAGE_PREFIX}-ruby26"
+# version used by MRI
+pkgver2=2.6.0
+# version used by pacman
+pkgver="${pkgver2/-/.}"
 pkgrel=1
 pkgdesc="An object-oriented language for quick and easy programming (mingw-w64)"
 arch=('any')
@@ -19,14 +19,13 @@ depends=("${MINGW_PACKAGE_PREFIX}-gcc-libs"
          "${MINGW_PACKAGE_PREFIX}-openssl>=1.1"
          "${MINGW_PACKAGE_PREFIX}-zlib")
 options=('staticlibs' 'strip')
-source=("https://cache.ruby-lang.org/pub/ruby/snapshot.tar.xz"
+source=("https://cache.ruby-lang.org/pub/ruby/${pkgver2%.*}/${_realname}-${pkgver2}.tar.bz2"
         ruby.ico
         rubyw.ico)
-noextract=("snapshot.tar.xz")
 
 # To update SHA256 hashs run: ridk exec sh -c "updpkgsums PKGBUILD"
 
-sha256sums=('SKIP'
+sha256sums=('c89ca663ad9a6238f4b1ec4d04c7dff630560c6e6eca6d30857c4d394f01a599'
             '6c80ba2ca49840e387a08b7fedc6e7acd298ac2ec853155209efb2af20397b22'
             'c30fb04ac0e88ba634daaa811a81ea5a75027646617b895acd14df9518a4a55a')
 
